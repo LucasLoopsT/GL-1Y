@@ -16,6 +16,10 @@ function Footer({ token }: { token: string }) {
   const [playlistName, setPlaylistName] = useState("Minha Playlist");
   const { player, deviceId } = useSpotifyPlayer(token);
 
+  //Corrigindo erros para deploy
+  setProgress(10);
+  console.log(player);
+
   // Atualiza a música atual
   const getCurrentPlayback = async () => {
     const { data } = await axios.get(
