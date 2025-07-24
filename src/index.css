@@ -1,0 +1,73 @@
+@import "tailwindcss";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+* {
+  box-sizing: border-box;
+}
+
+@theme {
+  --color-pri-7: #dedede;
+  --color-pri-8: #eaeaea;
+  --color-pri-9: #efefef;
+
+  /* Fundos */
+  --color-back-1: #0f172a;
+  --color-back-2: #141c2f;
+  --color-back-3: #1e293b;
+
+  /* Tipografia e destaques */
+  --color-red-1: #850104;
+  --color-red-2: #c11113;
+  --color-pink-1: #e11d48;
+  --color-pink-2: #f43f5e;
+  --color-pink-3: #ff758f;
+  --color-pink-4: #fd97bc;
+  --color-pink-5: #facbcc;
+  --color-purple-1: #20172c;
+
+  /* Neutros */
+  --color-neutral-1: #cbd5e1; /* Texto claro para contraste (cinza-azulado) */
+  --color-neutral-2: #f1f5f9; /* Texto mais claro ainda, para fundo escuro */
+
+  --font-cursive: "Edu NSW ACT Cursive", cursive !important;
+}
+
+body {
+  background-color: var(--color-back-1);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Patua One", serif;
+  cursor: default;
+}
+
+p {
+  font-family: "Sanchez", serif;
+  cursor: default;
+}
+
+.slick-dots li button:before {
+  color: var(--color-pink-3);
+  opacity: 0.5;
+}
+
+.slick-dots li.slick-active button:before {
+  color: var(--color-pink-2);
+  opacity: 1;
+}
+.slick-prev:before,
+.slick-next:before {
+  color: var(--color-pink-3);
+  opacity: 1;
+  transition: all 10ms ease;
+}
+
+.slick-prev:hover:before,
+.slick-next:hover:before {
+  color: var(--color-pink-2);
+  font-size: 21px;
+}
