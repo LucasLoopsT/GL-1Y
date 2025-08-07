@@ -5,9 +5,9 @@ import Home from "./pages/home/index.tsx";
 import Login from "./pages/login/index.tsx";
 import Callback from "./pages/callback/index.tsx";
 
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const router = createHashRouter(
+const router = createBrowserRouter(
   [
     {
       path: "/",
@@ -19,7 +19,7 @@ const router = createHashRouter(
       ],
     },
   ],
-  { basename: "" }
+  { basename: "/GL-1Y" }
 );
 
 createRoot(document.getElementById("root")!).render(
