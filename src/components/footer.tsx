@@ -22,8 +22,6 @@ function Footer() {
   const token = localStorage.getItem("spotify_token") as string;
   const [play, setPlay] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [current, setCurrent] = useState(0);
   const [trackName, setTrackName] = useState("Sem música");
   const [artistName, setArtistName] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -48,10 +46,7 @@ function Footer() {
           const progressMs = data.progress_ms;
           const durationMs = data.item.duration_ms;
 
-          setCurrent(progressMs);
-          setDuration(durationMs);
           setProgress((progressMs / durationMs) * 100);
-
           setTrackName(data.item.name);
           setArtistName(data.item.artists?.[0]?.name || "Artista desconhecido");
         }

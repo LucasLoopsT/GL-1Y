@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 
 const clientId = "b31e0527dc634b89aaa349cc38d75f32";
-const redirectUri = "http://127.0.0.1:5173/GL-1Y/callback";
+const redirectUri = "https://lucasloopst.github.io/GL-1Y/callback";
 const scope = [
   "streaming",
   "user-read-playback-state",
@@ -72,7 +72,9 @@ function Login() {
                   type="text"
                   maxLength={1}
                   value={values[i]}
-                  ref={(el) => (inputsRef.current[i] = el)}
+                  ref={(el) => {
+                    inputsRef.current[i] = el;
+                  }}
                   onChange={(e) => handleChange(i, e.target.value)}
                   className="w-1/2 h-full bg-pink-5 rounded-lg text-back-1 text-3xl sm:text-4xl font-bold text-center"
                 />
@@ -94,7 +96,9 @@ function Login() {
                   type="text"
                   maxLength={1}
                   value={values[i]}
-                  ref={(el) => (inputsRef.current[i] = el)}
+                  ref={(el) => {
+                    inputsRef.current[i] = el;
+                  }}
                   onChange={(e) => handleChange(i, e.target.value)}
                   className="w-1/2 h-full bg-pink-5 rounded-lg text-back-1 text-3xl sm:text-4xl font-bold text-center"
                 />
@@ -116,7 +120,9 @@ function Login() {
                   type="text"
                   maxLength={1}
                   value={values[i]}
-                  ref={(el) => (inputsRef.current[i] = el)}
+                  ref={(el) => {
+                    inputsRef.current[i] = el;
+                  }}
                   onChange={(e) => handleChange(i, e.target.value)}
                   className="w-1/2 h-full bg-pink-5 rounded-lg text-back-1 text-3xl sm:text-4xl font-bold text-center"
                 />
