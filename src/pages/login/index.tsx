@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 
 const clientId = "b31e0527dc634b89aaa349cc38d75f32";
-const redirectUri = "https://lucasloopst.github.io/GL-1Y/callback";
+const redirectUri = "https://lucasloopst.github.io/GL-1Y#/callback";
 const scope = [
   "streaming",
   "user-read-playback-state",
