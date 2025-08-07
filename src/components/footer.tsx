@@ -6,87 +6,153 @@ import {
   IoPlaySkipForward,
 } from "react-icons/io5";
 import { FaSpotify } from "react-icons/fa";
-import { useSpotifyPlayer } from "../hooks/useSpotifyPlayer"; // ajuste o caminho
-import axios from "axios";
+import { IoMenu } from "react-icons/io5";
+import { useSpotifyPlayer } from "../hooks/useSpotifyPlayer";
+import {
+  playPlaylist,
+  togglePlayback,
+  nextTrack,
+  previousTrack,
+  getPlayerState,
+} from "../service/spotify";
+import PlaylistModal from "./playlistModal";
+import { Slide } from "react-awesome-reveal";
 
-function Footer({ token }: { token: string }) {
+function Footer() {
+  const token = localStorage.getItem("spotify_token") as string;
   const [play, setPlay] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [current, setCurrent] = useState(0);
   const [trackName, setTrackName] = useState("Sem música");
-  const [playlistName, setPlaylistName] = useState("Minha Playlist");
-  const { player, deviceId } = useSpotifyPlayer(token);
+  const [artistName, setArtistName] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  //Corrigindo erros para deploy
-  setProgress(10);
-  console.log(player);
-
-  // Atualiza a música atual
-  const getCurrentPlayback = async () => {
-    const { data } = await axios.get(
-      "https://api.spotify.com/v1/me/player/currently-playing",
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-
-    if (data?.item) {
-      setTrackName(data.item.name);
-      setPlaylistName(data.context?.name || "Desconhecida");
-    }
-  };
+  const { deviceId } = useSpotifyPlayer(token);
 
   useEffect(() => {
-    if (play) getCurrentPlayback();
-  }, [play]);
+    if (deviceId && !play) {
+      playPlaylist(token, deviceId, "15Vi0mnqtTnNJWu43kWXO6")
+        .then(() => setPlay(true))
+        .catch((err) => console.error("Erro ao iniciar playlist", err));
+    }
+  }, [deviceId]);
 
-  const togglePlay = async () => {
-    if (!deviceId) return;
-    const url = `https://api.spotify.com/v1/me/player/${
-      play ? "pause" : "play"
-    }`;
-    await axios.put(
-      url,
-      {},
-      {
-        headers: { Authorization: `Bearer ${token}` },
+  // Atualiza progresso e info da música
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      try {
+        const data = await getPlayerState(token);
+
+        if (data && data.item) {
+          const progressMs = data.progress_ms;
+          const durationMs = data.item.duration_ms;
+
+          setCurrent(progressMs);
+          setDuration(durationMs);
+          setProgress((progressMs / durationMs) * 100);
+
+          setTrackName(data.item.name);
+          setArtistName(data.item.artists?.[0]?.name || "Artista desconhecido");
+        }
+      } catch (err) {
+        console.error("Erro ao buscar reprodução", err);
       }
-    );
-    setPlay(!play);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [token]);
+
+  const handleTogglePlay = async () => {
+    const success = await togglePlayback(token, play);
+    if (success) setPlay(!play);
   };
 
+  const handleOpenPlaylist = () => setIsModalOpen(true);
+  const handleClosePlaylist = () => setIsModalOpen(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const pulse = Math.random() * 0.4 + 0.6;
+      document.documentElement.style.setProperty(
+        "--footer-shadow-scale",
+        pulse.toString()
+      );
+    }, 400);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <footer className="fixed bottom-0 w-full bg-back-3 p-4 border-t border-pink-3">
-      <div className="flex flex-col gap-2 text-pink-3">
-        <div className="flex items-center justify-between px-2 text-sm text-pink-5">
-          <div className="flex items-center gap-2">
-            <FaSpotify className="text-green-500" />
-            <span className="font-semibold">Playlist: {playlistName}</span>
+    <footer className="fixed bottom-0 w-full flex flex-col justify-between bg-back-3 z-50">
+      <Slide
+        delay={500}
+        direction="up"
+        duration={1000}
+        triggerOnce
+        fraction={0.5}
+      >
+        {trackName === "Sem música" ? (
+          <div className="h-33 flex justify-center items-center py-4">
+            <div className="w-8 h-8 border-4 border-pink-3 border-t-transparent rounded-full animate-spin"></div>
           </div>
-          <span className="text-xs opacity-70">Now Playing: {trackName}</span>
-        </div>
-
-        <div className="flex items-center justify-center gap-6">
-          <IoPlaySkipBack className="cursor-pointer text-xl hover:text-pink-1 transition" />
-          <div
-            onClick={togglePlay}
-            className="p-3 bg-pink-1 text-white rounded-full cursor-pointer transition hover:bg-red-2"
-          >
-            {play ? <IoPause /> : <IoPlay />}
-          </div>
-          <IoPlaySkipForward className="cursor-pointer text-xl hover:text-pink-1 transition" />
-        </div>
-
-        <div className="flex items-center gap-2 text-xs text-pink-6 px-4">
-          <span>0:42</span>
-          <div className="flex-1 bg-pink-6/30 h-1 rounded-full overflow-hidden">
+        ) : (
+          <>
             <div
-              className="bg-pink-3 h-full transition-all"
+              className="footer absolute h-1 transition-all"
               style={{ width: `${progress}%` }}
             />
-          </div>
-          <span>3:10</span>
-        </div>
-      </div>
+            <div className="fixed w-full flex-1 bg-pink-6/30 h-1 rounded-full overflow-hidden bg-pink-4">
+              <div
+                className="bg-pink-2 h-full transition-all z-10"
+                style={{ width: `${progress}%` }}
+              />
+              <FaSpotify className="text-pink-1" />
+            </div>
+
+            <div className="flex flex-col justify-center items-center gap-5 p-4 sm:flex-row sm:gap-0 sm:p-8 w-full text-pink-3">
+              {/* Info da música */}
+              <div className="flex flex-col gap-2 w-full sm:w-1/3">
+                <div className="flex flex-col justify-center items-center sm:items-start w-full">
+                  <span className="font-semibold">{trackName}</span>
+                  <span className="text-xs opacity-70">{artistName}</span>
+                </div>
+              </div>
+              {/* Controles */}
+              <div className="relative flex items-center justify-between w-full sm:w-1/2">
+                <div className="flex items-center justify-center sm:justify-start gap-6 w-full">
+                  <IoPlaySkipBack
+                    onClick={() => previousTrack(token)}
+                    className="cursor-pointer text-xl hover:text-pink-1 transition"
+                  />
+                  <div
+                    onClick={handleTogglePlay}
+                    className="p-3 bg-pink-1 text-white rounded-full cursor-pointer transition hover:bg-red-2"
+                  >
+                    {play ? <IoPause /> : <IoPlay />}
+                  </div>
+                  <IoPlaySkipForward
+                    onClick={() => nextTrack(token)}
+                    className="cursor-pointer text-xl hover:text-pink-1 transition"
+                  />
+                </div>
+                <div
+                  className="absolute right-0 sm:static"
+                  onClick={handleOpenPlaylist}
+                >
+                  <IoMenu className="cursor-pointer text-3xl hover:text-pink-1 transition" />
+                </div>
+              </div>
+            </div>
+            <PlaylistModal
+              open={isModalOpen}
+              onClose={handleClosePlaylist}
+              token={token}
+              playlistId="15Vi0mnqtTnNJWu43kWXO6"
+            />
+          </>
+        )}
+      </Slide>
     </footer>
   );
 }

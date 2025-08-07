@@ -5,5 +5,9 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [tailwindcss(), react()],
-  base: "/lucasloopst.github.io/GL-1Y",
+  server: {
+    host: "127.0.0.1",
+    port: 5173,
+  },
+  base: "/GL-1Y",
 });

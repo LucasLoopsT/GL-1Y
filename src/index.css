@@ -71,3 +71,22 @@ p {
   color: var(--color-pink-2);
   font-size: 21px;
 }
+
+.footer {
+  box-shadow: 0 0 calc(40px * var(--footer-shadow-scale)) var(--color-pink-4);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-pink-2);
+  border-radius: 10px;
+}
+
+* {
+  scrollbar-width: auto;
+  scrollbar-color: var(--color-pink-2) transparent;
+}

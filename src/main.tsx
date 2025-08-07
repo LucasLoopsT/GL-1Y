@@ -1,20 +1,26 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./pages/home/index.tsx";
+import App from "./App.tsx";
+import Home from "./pages/home/index.tsx";
 import Login from "./pages/login/index.tsx";
+import Callback from "./pages/callback/index.tsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        { path: "/", element: <Home /> },
+        { path: "/login", element: <Login /> },
+        { path: "/callback", element: <Callback /> },
+      ],
+    },
+  ],
+  { basename: "/GL-1Y" }
+);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
