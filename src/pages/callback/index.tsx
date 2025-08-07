@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function Callback() {
-  const navigate = useNavigate();
+type CallbackProps = {
+  onTokenReceived: () => void;
+};
 
+function Callback({ onTokenReceived }: CallbackProps) {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
@@ -12,8 +13,8 @@ function Callback() {
     if (code) {
       const body = new URLSearchParams({
         grant_type: "authorization_code",
-        code: code,
-        redirect_uri: "https://gl-1y.onrender.com/callback",
+        code,
+        redirect_uri: "https://gl-1y.onrender.com/",
         client_id: "b31e0527dc634b89aaa349cc38d75f32",
         client_secret: "99fe47692be246d099c64ae6b4ec0bb0",
       });
@@ -27,13 +28,14 @@ function Callback() {
         .then((response) => {
           const { access_token } = response.data;
           localStorage.setItem("spotify_token", access_token);
-          navigate("/home");
+          onTokenReceived();
+          window.history.replaceState({}, "", "/");
         })
         .catch((error) => {
           console.error("Erro ao pegar token", error);
         });
     }
-  }, [navigate]);
+  }, [onTokenReceived]);
 
   return <p>Conectando ao Spotify...</p>;
 }
