@@ -13,7 +13,7 @@ function Callback() {
       const body = new URLSearchParams({
         grant_type: "authorization_code",
         code: code,
-        redirect_uri: "https://lucasloopst.github.io/GL-1Y/#/callback",
+        redirect_uri: "https://lucasloopst.github.io/GL-1Y/callback",
         client_id: "b31e0527dc634b89aaa349cc38d75f32",
         client_secret: "99fe47692be246d099c64ae6b4ec0bb0",
       });
