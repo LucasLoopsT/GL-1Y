@@ -7,6 +7,10 @@ function App() {
   const [page, setPage] = useState<"login" | "callback" | "home">("login");
 
   useEffect(() => {
+    localStorage.removeItem("spotify_token");
+  }, []);
+
+  useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
     const token = localStorage.getItem("spotify_token");
