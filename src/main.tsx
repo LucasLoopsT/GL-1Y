@@ -7,20 +7,17 @@ import Callback from "./pages/callback/index.tsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const router = createBrowserRouter(
-  [
-    {
-      path: "/",
-      element: <App />,
-      children: [
-        { path: "/", element: <Login /> },
-        { path: "/home", element: <Home /> },
-        { path: "/callback", element: <Callback /> },
-      ],
-    },
-  ],
-  { basename: "/GL-1Y" }
-);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      { path: "/", element: <Login /> },
+      { path: "/home", element: <Home /> },
+      { path: "/callback", element: <Callback /> },
+    ],
+  },
+]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

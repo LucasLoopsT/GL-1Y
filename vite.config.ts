@@ -9,5 +9,5 @@ export default defineConfig({
     host: true,
     port: 5173,
   },
-  base: "/GL-1Y",
+  base: "/",
 });
