@@ -14,7 +14,7 @@ function Home() {
     slidesToScSlide: 1,
     arrows: true,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 10000,
     pauseOnHover: true,
     fade: false,
     cssEase: "ease-in-out",
@@ -80,21 +80,25 @@ function Home() {
   }, []);
 
   return (
-    <div id="hero" className="w-full flex flex-col justify-center items-center">
+    <div
+      id="hero"
+      className="relative w-full flex flex-col justify-center items-center"
+    >
       <Header />
-      <main className="w-full flex flex-col items-center mt-25 mb-15">
-        <section id="carrossel" className="w-[80%] pt-16 mb-20">
+      <main className="w-full flex flex-col items-center mt-18">
+        <section id="carrossel" className="w-[80%] my-8">
           <Zoom delay={200} duration={1000} triggerOnce fraction={0.5}>
-            <div className="bg-back-2 p-8 pb-25 rounded-sm shadow-md h-max w-full">
+            <div className="bg-back-2 p-8 pb-25 rounded-sm shadow-md h-105 sm:h-max w-full">
               <Slider {...settings}>
                 {fotos.map((foto, index) => (
                   <div key={index} className="flex flex-col p-1 bg-transparent">
                     <img
-                      className="h-100 w-full object-cover bg-contain bg-center rounded-sm sm:h-125"
+                      className="h-75 w-full object-cover bg-cover bg-center rounded-sm sm:h-125"
                       src={foto.url}
+                      alt={foto.title}
                     />
-                    <p className="mt-5 text-lg text-pink-4">
-                      Título da polaroid
+                    <p className="mt-5 text-sm sm:text-md text-pink-4">
+                      {foto.title}
                     </p>
                   </div>
                 ))}
@@ -102,10 +106,9 @@ function Home() {
             </div>
           </Zoom>
         </section>
-
         <section
           id="contador"
-          className="w-full flex justify-center bg-back-2 p-8 sm:p-16 mb-20"
+          className="w-full flex justify-center bg-back-2 p-8 sm:p-16 mb-8"
         >
           <Slide direction="up" duration={1000} triggerOnce fraction={0.5}>
             <div className="w-full flex flex-col items-center gap-10">
@@ -113,29 +116,29 @@ function Home() {
                 Hoje completamos:
               </h2>
               <div className="w-full grid grid-cols-1 grid-rows-4 gap-5 sm:grid-cols-2 sm:grid-rows-2 md:grid-cols-4 md:grid-rows-1">
-                <div className="flex flex-col items-center justify-center min-w-32 bg-purple-1 p-8 rounded-xl shadow-lg shadow-pri-6">
-                  <h2 className="text-4xl sm:text-5xl text-pink-3">
+                <div className="flex flex-col items-center justify-center min-w-32 bg-purple-1 p-2 md:p-8 rounded-xl shadow-lg shadow-pri-6">
+                  <h2 className="text-2xl sm:text-4xl text-pink-3">
                     {time.days}
                   </h2>
-                  <p className="text-pink-2">Dias</p>
+                  <p className="text-sm sm:text-md text-pink-2">Dias</p>
                 </div>
-                <div className="flex flex-col items-center justify-center min-w-32 bg-purple-1 p-8 rounded-xl shadow-lg shadow-pri-6">
-                  <h2 className="text-4xl sm:text-5xl text-pink-3">
+                <div className="flex flex-col items-center justify-center min-w-32 bg-purple-1 p-2 md:p-8 rounded-xl shadow-lg shadow-pri-6">
+                  <h2 className="text-2xl sm:text-4xl text-pink-3">
                     {time.hours}
                   </h2>
-                  <p className="text-pink-2">Horas</p>
+                  <p className="text-sm sm:text-md text-pink-2">Horas</p>
                 </div>
-                <div className="flex flex-col items-center justify-center min-w-32 bg-purple-1 p-8 rounded-xl shadow-lg shadow-pri-6">
-                  <h2 className="text-4xl sm:text-5xl text-pink-3">
+                <div className="flex flex-col items-center justify-center min-w-32 bg-purple-1 p-2 md:p-8 rounded-xl shadow-lg shadow-pri-6">
+                  <h2 className="text-2xl sm:text-4xl text-pink-3">
                     {time.minutes}
                   </h2>
-                  <p className="text-pink-2">Minutos</p>
+                  <p className="text-sm sm:text-md text-pink-2">Minutos</p>
                 </div>
-                <div className="flex flex-col items-center justify-center min-w-32 bg-purple-1 p-8 rounded-xl shadow-lg shadow-pri-6">
-                  <h2 className="text-4xl sm:text-5xl text-pink-3">
+                <div className="flex flex-col items-center justify-center min-w-32 bg-purple-1 p-2 md:p-8 rounded-xl shadow-lg shadow-pri-6">
+                  <h2 className="text-2xl sm:text-4xl text-pink-3">
                     {time.secs}
                   </h2>
-                  <p className="text-pink-2">Segundos</p>
+                  <p className="text-sm sm:text-md text-pink-2">Segundos</p>
                 </div>
               </div>
               <h2 className="text-xl sm:text-2xl text-center text-pink-3 !font-cursive font-bold italic">
@@ -144,14 +147,14 @@ function Home() {
             </div>
           </Slide>
         </section>
-        <section id="carta" className="w-[80%] mb-30 sm:mb-20">
+        <section id="carta" className="w-[80%] mb-40 sm:mb-20">
           <Slide direction="up" duration={1000} triggerOnce fraction={0.5}>
             <div className="flex flex-col items-center justify-center bg-back-2 p-8 rounded-xl shadow-md">
               <h2 className="text-2xl sm:text-3xl text-pink-3 text-center mb-2">
                 Carta aberta ao meu amor!
               </h2>
               <hr className="w-[70%] border-2 border-pink-3 opacity-50 mb-6" />
-              <p className="text-pink-5  px-8 mb-6">
+              <p className="text-sm md:text-md text-pink-5 md:px-4 mb-6">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
                 veritatis deleniti, reiciendis ut labore minima maxime sint,
                 ipsum repellendus sit distinctio voluptatem quidem nisi eum

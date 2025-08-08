@@ -5,7 +5,6 @@ import {
   IoPlaySkipBack,
   IoPlaySkipForward,
 } from "react-icons/io5";
-import { FaSpotify } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import { useSpotifyPlayer } from "../hooks/useSpotifyPlayer";
 import {
@@ -23,7 +22,7 @@ function Footer() {
   const [play, setPlay] = useState(false);
   const [progress, setProgress] = useState(0);
   const [trackName, setTrackName] = useState("Sem música");
-  const [artistName, setArtistName] = useState("");
+  const [artistName, setArtistName] = useState("Artista");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { deviceId } = useSpotifyPlayer(token);
@@ -88,7 +87,7 @@ function Footer() {
         fraction={0.5}
       >
         {trackName === "Sem música" ? (
-          <div className="h-33 flex justify-center items-center py-4">
+          <div className="h-16 flex justify-center items-center py-4">
             <div className="w-8 h-8 border-4 border-pink-3 border-t-transparent rounded-full animate-spin"></div>
           </div>
         ) : (
@@ -102,10 +101,9 @@ function Footer() {
                 className="bg-pink-2 h-full transition-all z-10"
                 style={{ width: `${progress}%` }}
               />
-              <FaSpotify className="text-pink-1" />
             </div>
 
-            <div className="flex flex-col justify-center items-center gap-5 p-4 sm:flex-row sm:gap-0 sm:p-8 w-full text-pink-3">
+            <div className="flex flex-col justify-center items-center gap-5 sm:flex-row sm:gap-0 p-3 sm:pt-5 w-full text-neutral-1">
               {/* Info da música */}
               <div className="flex flex-col gap-2 w-full sm:w-1/3">
                 <div className="flex flex-col justify-center items-center sm:items-start w-full">
@@ -114,40 +112,40 @@ function Footer() {
                 </div>
               </div>
               {/* Controles */}
-              <div className="relative flex items-center justify-between w-full sm:w-1/2">
+              <div className="flex items-center justify-between w-full sm:w-1/2">
                 <div className="flex items-center justify-center sm:justify-start gap-6 w-full">
                   <IoPlaySkipBack
                     onClick={() => previousTrack(token)}
-                    className="cursor-pointer text-xl hover:text-pink-1 transition"
+                    className="cursor-pointer text-xl hover:text-pink-4 transition"
                   />
                   <div
                     onClick={handleTogglePlay}
-                    className="p-3 bg-pink-1 text-white rounded-full cursor-pointer transition hover:bg-red-2"
+                    className="p-3 bg-pink-2 text-white rounded-full cursor-pointer transition hover:bg-pink-3"
                   >
                     {play ? <IoPause /> : <IoPlay />}
                   </div>
                   <IoPlaySkipForward
                     onClick={() => nextTrack(token)}
-                    className="cursor-pointer text-xl hover:text-pink-1 transition"
+                    className="cursor-pointer text-xl hover:text-pink-4 transition"
                   />
                 </div>
                 <div
-                  className="absolute right-0 sm:static"
+                  className="absolute right-3 sm:static"
                   onClick={handleOpenPlaylist}
                 >
-                  <IoMenu className="cursor-pointer text-3xl hover:text-pink-1 transition" />
+                  <IoMenu className="cursor-pointer text-3xl hover:text-pink-4 transition" />
                 </div>
               </div>
             </div>
-            <PlaylistModal
-              open={isModalOpen}
-              onClose={handleClosePlaylist}
-              token={token}
-              playlistId="15Vi0mnqtTnNJWu43kWXO6"
-            />
           </>
         )}
       </Slide>
+      <PlaylistModal
+        open={isModalOpen}
+        onClose={handleClosePlaylist}
+        token={token}
+        playlistId="15Vi0mnqtTnNJWu43kWXO6"
+      />
     </footer>
   );
 }
