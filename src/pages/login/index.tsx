@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 
 const clientId = "b31e0527dc634b89aaa349cc38d75f32";
-const redirectUri = "http://127.0.0.1:5173/";
+const redirectUri = "https://gl-1y.onrender.com/";
 const scope = [
   "streaming",
   "user-read-playback-state",

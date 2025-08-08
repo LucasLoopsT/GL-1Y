@@ -14,7 +14,7 @@ function Callback({ onTokenReceived }: CallbackProps) {
       const body = new URLSearchParams({
         grant_type: "authorization_code",
         code,
-        redirect_uri: "http://127.0.0.1:5173/",
+        redirect_uri: "https://gl-1y.onrender.com/",
         client_id: "b31e0527dc634b89aaa349cc38d75f32",
         client_secret: "99fe47692be246d099c64ae6b4ec0bb0",
       });

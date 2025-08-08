@@ -155,25 +155,48 @@ function Home() {
               </h2>
               <hr className="w-[70%] border-2 border-pink-3 opacity-50 mb-6" />
               <p className="text-sm md:text-md text-pink-5 md:px-4 mb-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-                veritatis deleniti, reiciendis ut labore minima maxime sint,
-                ipsum repellendus sit distinctio voluptatem quidem nisi eum
-                beatae animi delectus cupiditate voluptate.
+                Essa carta vai ser um pouco diferente. Começando que ela é
+                digital e por mais que as cartas de papéis sejam mais
+                romanticias, o intuito é o conjunto da obra. E posso dizer até
+                que essa carta é eterna, já que vai estar pro resto dos tempos
+                aqui disponível, atravessando a barreira do espaço. Viajei
+                demais?
                 <br />
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-                veritatis deleniti, reiciendis ut labore minima maxime sint,
-                ipsum repellendus sit distinctio voluptatem quidem nisi eum
-                beatae animi delectus cupiditate voluptate.
                 <br />
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-                veritatis deleniti, reiciendis ut labore minima maxime sint,
-                ipsum repellendus sit distinctio voluptatem quidem nisi eum
-                beatae animi delectus cupiditate voluptate.
+                É, as vezes eu viajo mesmo... Mas uma das minhas maiores viagens
+                foi não ter ficado com contigo antes. As vezes eu imagino como
+                teria sido minha vida antes com você. Mas sempre chego a
+                conclusão de que você veio no momento certo pra mim, em um
+                momento meu mais maduro e que me fez abrir o coração de verdade.
+                Me apegar sem receio e com a certeza de que tenho alguém
+                incrível ao meu lado.
                 <br />
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-                veritatis deleniti, reiciendis ut labore minima maxime sint,
-                ipsum repellendus sit distinctio voluptatem quidem nisi eum
-                beatae animi delectus cupiditate voluptate.
+                <br />
+                Um alguém que eu admiro muito. Admiro por seu caráter, sua
+                mentalidade, personalidade e carisma. Pra mim você é perfeita, a
+                mulher perfeita. Já consigo planejar uma vida toda e, igual como
+                eu estava para hoje, fico super ansioso só esperando o dia de
+                podermos finalmente entrar por uma porta e em seguida falar:
+                "nosso lar". Ou então esperando o dia do nosso casamento.
+                <br />
+                <br />
+                E sabe o mais impressionante sobre isso tudo? É que eu nunca fui
+                esse cara de planejar esse tipo de sonho. Mas contigo eu tenho
+                esse anseio, essa vontade pra mim só advém de uma coisa... Amor.
+                <br />
+                <br />
+                Você é a pessoa que eu mais amei em toda minha vida e sinto que
+                esse sentimento só tende a crescer. Nesse 1 ano de namoro eu me
+                apaixonei pela Gabrielle Macedo mais do que 365 dias. Pro futuro
+                eu só desejo, do fundo do meu coração, que nós continuemos
+                vivendo a vida juntos e aproveitando um ao outro como sempre
+                fazemos. Se apoiando, se amando, comemorando junto e até
+                lamentando junto... E por fim construindo uma bela história de
+                amor.
+                <br />
+                <br />
+                Amo você, Gabrielle. Feliz 1 ano de namoro e que venham muitos
+                mais! S2
               </p>
               <hr className="w-[70%] border-2 border-pink-3 opacity-50" />
             </div>
